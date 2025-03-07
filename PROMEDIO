@@ -1,0 +1,18 @@
+import random
+
+# Defino los datos base
+ciudades = ["Quito", "Guayaquil", "Cuenca"]
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+semanas = 2  # Cantidad de semanas a considerar
+
+# Genero temperaturas aleatorias entre 10 y 30 grados
+# Básicamente, una tabla gigante con números al azar
+temperaturas = [[[random.randint(10, 30) for _ in dias] for _ in range(semanas)] for _ in ciudades]
+
+# Ahora toca recorrer la matriz y calcular los promedios
+for i, ciudad in enumerate(ciudades):
+    print(f"Temperaturas promedio en {ciudad}:")
+    for semana in range(semanas):
+        promedio = sum(temperaturas[i][semana]) / len(dias)
+        print(f"  Semana {semana + 1}: {promedio:.2f}°C")
+    print()  # Línea en blanco para separar ciudades
