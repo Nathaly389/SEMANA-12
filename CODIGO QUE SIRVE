@@ -1,0 +1,42 @@
+import random
+
+# Defino los datos base
+ciudades = ["Quito", "Guayaquil", "Cuenca"]
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+semanas = 2  # Cantidad de semanas a considerar
+
+# Genero temperaturas aleatorias entre 10 y 30 grados para cada ciudad y semana
+temperaturas = {
+    ciudad: [[random.randint(10, 30) for _ in dias] for _ in range(semanas)]
+    for ciudad in ciudades
+}
+
+# Función para calcular el promedio de temperaturas por semana en cada ciudad
+def calcular_promedio_temperaturas(temperaturas):
+    """
+    Calcula el promedio de temperaturas por semana en cada ciudad.
+
+    Parámetros:
+    temperaturas (dict): Diccionario con ciudades como claves y listas de temperaturas semanales como valores.
+
+    Retorna:
+    dict: Diccionario con el promedio de temperatura por semana para cada ciudad.
+    """
+    promedios = {}
+
+    for ciudad, semanas_data in temperaturas.items():
+        promedios[ciudad] = [
+            sum(semana) / len(semana) for semana in semanas_data
+        ]
+
+    return promedios
+
+# Calcular los promedios
+resultados = calcular_promedio_temperaturas(temperaturas)
+
+# Mostrar resultados en pantalla
+for ciudad, promedios_semanales in resultados.items():
+    print(f"Temperaturas promedio en {ciudad}:")
+    for i, promedio in enumerate(promedios_semanales, start=1):
+        print(f"  Semana {i}: {promedio:.2f}°C")
+    print()  # Línea en blanco para separar ciudades
