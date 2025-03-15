@@ -1,0 +1,31 @@
+def calcular_promedio_temperaturas(datos):
+    """
+    Calcula el promedio de temperaturas de cada ciudad durante las semanas.
+    
+    Parámetros:
+    datos (diccionario): Un diccionario donde las claves son las ciudades y los valores
+                          son listas con las temperaturas de cada semana.
+    
+    Retorna:
+    diccionario: Un diccionario con las ciudades y su temperatura promedio.
+    """
+    
+    promedios = {}  # Diccionario para almacenar los promedios
+    
+    for ciudad, temperaturas in datos.items():
+        promedio = sum(temperaturas) / len(temperaturas)
+        promedios[ciudad] = promedio
+    
+    return promedios
+datos_temperaturas = {
+    "CiudadA": [22, 23, 21, 24],  # Temperaturas de la ciudad A durante 4 semanas
+    "CiudadB": [18, 19, 17, 20],  # Temperaturas de la ciudad B durante 4 semanas
+    "CiudadC": [30, 32, 29, 31],  # Temperaturas de la ciudad C durante 4 semanas
+}
+
+# Llamada a la función
+resultados = calcular_promedio_temperaturas(datos_temperaturas)
+
+# Mostrar resultados
+for ciudad, promedio in resultados.items():
+    print(f"La temperatura promedio en {ciudad} es {promedio}°C.")
